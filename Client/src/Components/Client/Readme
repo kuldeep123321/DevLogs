@@ -1,0 +1,50 @@
+1. Layout Components (The Skeleton)
+Ye wo components hain jo har page pe common rahenge.
+
+Sidebar.jsx: Isme navigation links honge.
+
+SidebarItem.jsx: Ek single link (Dashboard, Projects etc.) with icon.
+
+Navbar.jsx: Top bar jahan Search, Notifications, aur User Profile hogi.
+
+NotificationDropdown.jsx: Navbar ke andar jo bell icon click karne pe khulega.
+
+2. Dashboard Overview Components (The Stats)
+StatsContainer.jsx: Saare cards ka baap (Wrapper).
+
+StatCard.jsx: Ek single card (e.g., "Active Projects: 5"). Isme hum props pass karenge (title, value, color, icon).
+
+3. AI Requirement Section (The Magic)
+Isko alag se todna zaroori hai kyunki isme logic zyada hoga.
+
+RequirementSection.jsx: Wrapper for the input and AI output.
+
+RequirementInput.jsx: Sirf textarea aur "Analyze" button wala part.
+
+AILoader.jsx: Ek mast animation jo dikhayega ki AI soch raha hai (Lottie files use kar sakte ho).
+
+AITaskPreview.jsx: AI ne jo tasks split kiye hain, unki ek list dikhane ke liye.
+
+TaskPill.jsx: AI breakdown ke andar ek single task (e.g., "Setup Auth").
+
+4. Project Tracking Components (The Progress)
+ProjectTracker.jsx: Main tracking area.
+
+RoadmapStepper.jsx: Wo dots wali line (Planning -> Dev -> Testing).
+
+StepItem.jsx: Ek single step (Active, Completed, ya Pending state ke saath).
+
+ProgressBar.jsx: Ek horizontal ya circular progress bar component.
+
+5. Data Table Components (The History)
+ProjectTable.jsx: Pure table ka structure.
+
+TableHeader.jsx: Table ki heading row.
+
+TableRow.jsx: Ek single project ki row.
+
+StatusBadge.jsx: "In-Progress" (Yellow), "Completed" (Green) wale chote tags.
+
+
+
+
