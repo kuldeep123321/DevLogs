@@ -1,13 +1,12 @@
-import React from 'react'
-import Clientr from './ROLES/Clientr'
-// import Signup from './Components/Authentication/SignUp'
-import Login from './Components/Authentication/Login'
-function App() {
+import { Routes, Route } from 'react-router-dom'
+import SignUp from './Components/Authentication/SignUp';
+import Login from './Components/Authentication/Login';
+export default function App() {
   return (
-    <div>
-      <Login/>
-    </div>
+    <Routes>
+      <Route path="/" element={<SignUp />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
   )
 }
-
-export default App

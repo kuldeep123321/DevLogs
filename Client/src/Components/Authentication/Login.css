@@ -1,222 +1,141 @@
-/* Login.css */
-.login-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f2f5;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
+/* Login.css - Signup se match karta hai */
+:root {
+  --primary-color: #6366f1;
+  --bg-dark: #0f172a;
+  --card-bg: #1e293b;
+  --text-main: #f8fafc;
+  --text-dim: #94a3b8;
 }
 
-.login-container {
-    display: flex;
-    width: 100%;
-    max-width: 900px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    min-height: 550px;
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-dark);
+  background-image: radial-gradient(circle at top right, #1e1b4b, transparent);
+  font-family: 'Inter', sans-serif;
+  padding: 20px;
 }
 
-/* Left Section */
-.login-left {
-    flex: 1;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-    color: #ffffff;
-    padding: 45px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.auth-card {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.login-left h1 {
-    font-size: 2.8rem;
-    margin-bottom: 15px;
-    font-weight: 800;
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.login-left p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    opacity: 0.9;
+.auth-header h1 {
+  color: var(--text-main);
+  font-size: 2rem;
+  font-weight: 800;
 }
 
-/* Right Section */
-.login-right {
-    flex: 1;
-    padding: 45px;
-    display: flex;
-    flex-direction: column;
+.auth-header h1 span {
+  color: var(--primary-color);
 }
 
-.login-header h2 {
-    font-size: 1.8rem;
-    color: #1f2937;
-    margin-bottom: 8px;
+.auth-header p {
+  color: var(--text-dim);
+  margin-top: 0.5rem;
 }
 
-.login-header p {
-    color: #6b7280;
-    margin-bottom: 25px;
-}
-
-/* Form Styles */
-.login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
 .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .input-group label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #374151;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 .input-group input {
-    padding: 12px 15px;
-    border: 1.5px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.2s;
+  background: #0f172a;
+  border: 1px solid #334155;
+  padding: 0.8rem;
+  border-radius: 8px;
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
 }
 
 .input-group input:focus {
-    outline: none;
-    border-color: #2563eb;
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
-.forgot-link {
-    text-align: right;
+.input-group input::placeholder {
+  color: var(--text-dim);
 }
 
-.forgot-link a {
-    font-size: 0.85rem;
-    color: #2563eb;
-    text-decoration: none;
+/* Forgot password link */
+.forgot-password {
+  text-align: right;
+  margin-top: -0.5rem;
 }
 
-.login-btn {
-    background-color: #2563eb;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: background 0.3s;
+.forgot-password a {
+  color: var(--primary-color);
+  font-size: 0.85rem;
+  text-decoration: none;
 }
 
-.login-btn:hover {
-    background-color: #1d4ed8;
+.forgot-password a:hover {
+  text-decoration: underline;
 }
 
-/* Divider */
-.divider {
-    margin: 25px 0;
-    text-align: center;
-    position: relative;
+.auth-btn {
+  background: var(--primary-color);
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+  font-size: 1rem;
 }
 
-.divider::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background: #e5e7eb;
-    left: 0;
-    top: 50%;
-    z-index: 1;
+.auth-btn:hover:not(:disabled) {
+  background: #4f46e5;
 }
 
-.divider span {
-    background: #fff;
-    padding: 0 15px;
-    position: relative;
-    z-index: 2;
-    color: #9ca3af;
-    font-size: 0.85rem;
+.auth-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-/* Other Options */
-.other-options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
 }
 
-.otp-btn, .google-btn {
-    padding: 10px;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 0.95rem;
-    transition: all 0.2s;
+.auth-footer a {
+  color: var(--primary-color);
+  text-decoration: none;
 }
 
-.otp-btn {
-    background: #fff;
-    border: 1.5px solid #2563eb;
-    color: #2563eb;
-}
-
-.otp-btn:hover {
-    background: #eff6ff;
-}
-
-.google-btn {
-    background: #fff;
-    border: 1.5px solid #e5e7eb;
-    color: #374151;
-}
-
-.google-btn:hover {
-    background: #f9fafb;
-}
-
-.login-footer {
-    margin-top: auto;
-    text-align: center;
-    padding-top: 20px;
-    font-size: 0.9rem;
-    color: #6b7280;
-}
-
-.login-footer a {
-    color: #2563eb;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .login-container {
-        flex-direction: column;
-    }
-    .login-left {
-        padding: 30px;
-    }
-    .login-right {
-        padding: 30px;
-    }
+.auth-footer a:hover {
+  text-decoration: underline;
 }
