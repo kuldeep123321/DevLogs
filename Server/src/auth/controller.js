@@ -1,4 +1,4 @@
-import { createUserInDb, findUserByEmailInDb } from './service.js';
+import { createUserInDb, findUserByEmailInDb,refreshtokenindb } from './service.js';
 import { hashPassword } from './utils.js';
 import { comparePassword, generateToken} from './utils.js';
 export const register = async (req, res) => {
@@ -13,24 +13,33 @@ export const register = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-export const login=async(req,res)=>{
-    try{
-        const{email,password}= req.body;
-        const userExist=await findUserByEmailInDb(email);
-        if(!userExist){
-            res.status(404).json({
-                message:"User does not exist plz signup first"
-            })
+export const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const userExist = await findUserByEmailInDb(email);
+        if (!userExist) {
+            return res.status(404).json({
+                message: "User does not exist plz signup first"
+            });
         }
-        const validuser=await comparePassword(password,userExist.password);
-        if(!validuser){
-            res.status(404).json({message:"wrong credentials"});
+
+        const validuser = await comparePassword(password, userExist.password);
+        if (!validuser) {
+            return res.status(401).json({ message: "wrong credentials" });
         }
-        const token=generateToken(userExist.id);
-        localStorage.setItem('token', data.token);
+
+        const token = generateToken(userExist.id);
+
+        const expiresat = new Date();
+        expiresat.setDate(expiresat.getDate() + 7);
+
+        const refreshtoken = await refreshtokenindb(userExist.id, expiresat);
+
         res.status(200).json({
             message: "Login successful!",
             token,
+            refreshtoken,
             user: {
                 id: userExist.id,
                 username: userExist.username,
@@ -38,9 +47,9 @@ export const login=async(req,res)=>{
                 role: userExist.role
             }
         });
-    }catch(error){
+    } catch (error) {
         res.status(500).json({
-            error:error.message
-        })
+            error: error.message
+        });
     }
 };
