@@ -1,34 +1,27 @@
 // src/api/auth.js
-const BASE_URL = 'http://localhost:3000/api/auth';
-
+import api from "../../api";
 export const registerUser = async (formdata) => {
-    const response = await fetch(`${BASE_URL}/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formdata)
-    });
-    const data=await response.json();
-    if(response.ok){
-        return {success: true,user: data.user}
-    }
-    else{
-        return {success:false,}
-    }
-
+    try{
+    const {data}=await api.post("/auth/register",formdata);
+    return {success: true,user: data.user};
+   }catch(error){
+    return{
+        success:false,
+        message: error.response?.data?.message || "something went wrong"
+    };
+   }
 };
 
 export const loginUser = async (formdata) => {
-    const response = await fetch(`${BASE_URL}/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formdata)
-    });
-      const data=await response.json();
-      
-    if(response.ok){
-        return {success: true,user: data.user,token:data.token}
+    try{
+        const {data}=await api.post("/auth/login",formdata);
+        localStorage.setItem("accessToken",data.token);
+        return {success: true,user: data.user,token :data.token};
     }
-    else{
-        return {success:false,}
-    }
+    catch(error){
+        return{
+            success: false,
+            message: error.response?.data?.message || "Invalid credentials"
+        };
+    } 
 };

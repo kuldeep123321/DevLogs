@@ -6,6 +6,6 @@ export const hashPassword=async(password)=>{
 export const comparePassword=async(password,hashed)=>{
     return await bcrypt.compare(password,hashed);
 }
-export const generateToken=(id)=>{
-    return jwt.sign({id},process.env.JWT_SECRET,{expiresIn: '30d'})
+export const generateToken=(id,role)=>{
+    return jwt.sign({id,role},process.env.JWT_SECRET,{expiresIn: '10s'})
 }

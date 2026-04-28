@@ -21,3 +21,19 @@ export const refreshtokenindb = async (userId, expiresat) => {
     const result = await executeQuery(sql, [userId, expiresat]);
     return result.rows[0].token;
 };
+export const findrefreshtokenindb = async (token) => {
+    const sql = `
+        SELECT rt.token, rt.expires_at, rt.user_id,
+               u.email, u.role
+        FROM "refresh_tokens" rt
+        JOIN "Users" u ON rt.user_id = u.id
+        WHERE rt.token = $1
+          AND rt.expires_at > NOW()
+    `;
+    const result = await executeQuery(sql, [token]);
+    return result.rows[0];
+};
+export const deleteRefreshtokenFromDb = async (token) => {
+    const sql = `DELETE FROM "refresh_tokens" WHERE token = $1`;
+    await executeQuery(sql, [token]);
+};

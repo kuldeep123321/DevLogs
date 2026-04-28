@@ -1,4 +1,4 @@
-import { createUserInDb, findUserByEmailInDb,refreshtokenindb } from './service.js';
+import { createUserInDb, findrefreshtokenindb, findUserByEmailInDb,refreshtokenindb } from './service.js';
 import { hashPassword } from './utils.js';
 import { comparePassword, generateToken} from './utils.js';
 export const register = async (req, res) => {
@@ -29,17 +29,21 @@ export const login = async (req, res) => {
             return res.status(401).json({ message: "wrong credentials" });
         }
 
-        const token = generateToken(userExist.id);
+        const token = generateToken(userExist.id,userExist.role);
 
         const expiresat = new Date();
         expiresat.setDate(expiresat.getDate() + 7);
 
         const refreshtoken = await refreshtokenindb(userExist.id, expiresat);
-
+        res.cookie("refreshtoken",refreshtoken,{
+            httpOnly:true,
+            secure:false,
+            sameSite:"lax",
+            maxAge:7*24*60*60*100
+        });
         res.status(200).json({
             message: "Login successful!",
             token,
-            refreshtoken,
             user: {
                 id: userExist.id,
                 username: userExist.username,
@@ -51,5 +55,23 @@ export const login = async (req, res) => {
         res.status(500).json({
             error: error.message
         });
+    }
+};
+export const refreshtoken=async(req,res)=>{
+    const refreshtoken=req.cookies.refreshtoken;
+    if(!refreshtoken){
+        return res.status(401).json({message: "no refresh token"});
+    }
+    try{
+        const tokenData=await findrefreshtokenindb(refreshtoken);
+        if(!tokenData){
+            return res.status(401).json({"message":"token invalid ya expire"});
+        }
+        const newAccessToken=generateToken(tokenData.user_id,tokenData.role);
+        res.status(200).json({
+            accesstoken:newAccessToken
+        });
+    }catch(error){
+        res.status(500).json({error:error.message});
     }
 };
