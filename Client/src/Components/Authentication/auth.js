@@ -16,6 +16,7 @@ export const loginUser = async (formdata) => {
     try{
         const {data}=await api.post("/auth/login",formdata);
         localStorage.setItem("accessToken",data.token);
+        localStorage.setItem("role",data.user.role);
         return {success: true,user: data.user,token :data.token};
     }
     catch(error){
