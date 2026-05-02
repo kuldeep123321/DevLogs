@@ -14,10 +14,9 @@ export const registerUser = async (formdata) => {
 
 export const loginUser = async (formdata) => {
     try{
-        const {data}=await api.post("/auth/login",formdata);
-        localStorage.setItem("accessToken",data.token);
-        localStorage.setItem("role",data.user.role);
-        return {success: true,user: data.user,token :data.token};
+        const response=await api.post("/auth/login",formdata);
+        const serverData=response.data;
+        return {success: true,user: serverData.user,token :serverData.token};
     }
     catch(error){
         return{

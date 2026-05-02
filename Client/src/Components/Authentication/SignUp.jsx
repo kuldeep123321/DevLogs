@@ -8,7 +8,7 @@ export default function SignUp() {
         username: '',
         email: '',
         password: '',
-        role: 'Frontend Dev'
+        role: 'Manager'
     });
 
     const handlechange = (e) => {
@@ -68,10 +68,9 @@ export default function SignUp() {
                             onChange={handlechange}
                             className="bg-[#0f172a] border border-[#334155] p-3 rounded-lg text-white outline-none focus:border-[#6366f1] transition-all"
                         >
-                            <option value="Frontend dev">Frontend Developer</option>
-                            <option value="Backend dev">Backend Developer</option>
-                            <option value="Full Stack dev">Full Stack Developer</option>
-                            <option value="devops">DevOps Engineer</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Technical Lead">Technical Lead</option>
+                            <option value="Developer">Developer</option>
                         </select>
                     </div>
 

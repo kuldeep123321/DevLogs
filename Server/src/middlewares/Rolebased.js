@@ -11,9 +11,9 @@ export const protect=(req,res,next)=>{
         return res.json(401).json({message:"token invalid or expire"});
     }
 };
-export const allowedroles={...roles}=>{
+export const allowedroles=(...roles) => {
     return(req,res,next)=>{
-        if(!roles.include(req.user.role)){
+        if(!roles.includes(req.user.role)){
             return res.status(403).json({message:"permission nahi hai"});
         }
         next();

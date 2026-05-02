@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import SignUp from './Components/Authentication/SignUp';
 import Login from './Components/Authentication/Login';
 import Landing from './ROLES/Landing/LandingPage';
+import SideBar from './Components/Common/SideBar';
 // import api from './api';
 const ProtectedRoute=({children})=>{
   const token=localStorage.getItem("accessToken");
@@ -25,6 +26,7 @@ export default function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/DashBoard" element={<SideBar />} />
       {/* <Route path="/noaccess" element={<div>Access Nahi Hai 🚫</div>} />
       <Route paht="/dashboard" element={
         <ProtectedRoute><div>Dashboard</div></ProtectedRoute>

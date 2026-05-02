@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "./auth";
-
+import {useAuth} from "../../Context/AuthContext.jsx";
 export default function Login() {
+    const {login}=useAuth();
     const navigate = useNavigate();
     const [formdata, setformdata] = useState({ email: "", password: "" });
     const [loading, setLoading] = useState(false);
@@ -15,8 +16,8 @@ export default function Login() {
         try {
             const data = await loginUser(formdata);
             if (data.success) {
-                alert("Welcome back! 🎉");
-                navigate('/dashboard'); 
+                login({role:data.user.role,username:data.user.username});
+                navigate('/Dashboard'); 
             } else {
                 alert(data.message || "Invalid credentials");
             }
