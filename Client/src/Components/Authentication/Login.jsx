@@ -17,7 +17,7 @@ export default function Login() {
             const data = await loginUser(formdata);
             if (data.success) {
                 login({role:data.user.role,username:data.user.username});
-                navigate('/Dashboard'); 
+                navigate('/Manager/Dashboard'); 
             } else {
                 alert(data.message || "Invalid credentials");
             }

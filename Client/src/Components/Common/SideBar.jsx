@@ -4,7 +4,7 @@ import { User, LayoutDashboard, FilePlus, ClipboardCheck, Handshake } from 'luci
 import {useAuth} from "../../Context/AuthContext.jsx";
 const Sidebarconfig = [
     { title: "DashBoard", path: "/client/home", roles: ["Manager"], icon: <LayoutDashboard size={20} /> },
-    { title: "New Project", path: "/client/create", roles: ["Manager"], icon: <FilePlus size={20} /> },
+    { title: "New Project", path: "/Manager/NewProject", roles: ["Manager"], icon: <FilePlus size={20} /> },
     { title: "Status", path: "/client/status", roles: ["Manager"], icon: <ClipboardCheck size={20} /> },
     { title: "Deals", path: "/client/Deals", roles: ["Manager"], icon: <Handshake size={20} /> },
 ];
